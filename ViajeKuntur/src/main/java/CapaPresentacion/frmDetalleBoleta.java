@@ -5,7 +5,8 @@ import CapaNegocio.DetalleBoleta;
 import javax.swing.JOptionPane;
 
 public class frmDetalleBoleta extends javax.swing.JFrame {
-    DetalleBoleta detalleFactura = new DetalleBoleta();
+    
+    DetalleBoleta detalleBoleta = new DetalleBoleta();
     Comprobante comprobante = new Comprobante();
     
     public frmDetalleBoleta() {
@@ -164,7 +165,7 @@ public class frmDetalleBoleta extends javax.swing.JFrame {
         comprobante.setTipoPago(tipoPago);
         comprobante.setMontoVenta(montoVenta);
         comprobante.setPrecio(precio);
-        detalleFactura.setSubtotal(subTotal);
+        detalleBoleta.setSubtotal(subTotal);
         
         Limpiar();
         JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
@@ -175,11 +176,11 @@ public class frmDetalleBoleta extends javax.swing.JFrame {
         txtTipoPago.setText(comprobante.getTipoPago()+"");
         txtMonto.setText(comprobante.getMontoVenta()+"");
         txtPrecio.setText(comprobante.getPrecio()+"");
-        txtSubtotal.setText(detalleFactura.getSubtotal()+"");
+        txtSubtotal.setText(detalleBoleta.getSubtotal()+"");
 
         JOptionPane.showMessageDialog(this,"\nId: " + comprobante.getId() + "\nTipo de Pago: " + comprobante.getTipoPago()+ 
                 "\nMonto de Venta: " + comprobante.getMontoVenta() + "\nPrecio: " + comprobante.getPrecio() +
-                "\nSubtotal: " + detalleFactura.getSubtotal());
+                "\nSubtotal: " + detalleBoleta.getSubtotal());
     }//GEN-LAST:event_btnEscribirActionPerformed
         
     public static void main(String args[]) {

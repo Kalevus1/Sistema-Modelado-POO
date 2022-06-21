@@ -1,6 +1,18 @@
 package CapaPresentacion;
 
+import CapaNegocio.Cliente;
+import CapaNegocio.Juridica;
+import CapaNegocio.Natural;
+import CapaNegocio.Persona;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class frmNatural extends javax.swing.JFrame {
+    
+    Persona persona = new Persona();
+    Cliente cliente = new Cliente();
+    Juridica juridica = new Juridica();
+    Natural natural = new Natural();
 
     public frmNatural() {
         initComponents();
@@ -60,10 +72,20 @@ public class frmNatural extends javax.swing.JFrame {
         jLabel5.setText("Correo:");
 
         btnLeer.setText("Leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Fecha Nac:");
 
         btnEscribir.setText("Escribir");
+        btnEscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscribirActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Lugar Nac:");
 
@@ -180,6 +202,52 @@ public class frmNatural extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();   
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscribirActionPerformed
+        txtId.setText(persona.getId()+"");
+        txtApellidos.setText(persona.getApellidos()+"");
+        txtNombres.setText(persona.getNombres()+"");
+        txtCorreo.setText(persona.getCorreo()+"");
+        dtFecha.setDate(persona.getFechaNac());
+        txtLugar.setText(persona.getLugarNac()+"");
+        txtNum.setText(persona.getNumCel()+"");
+        txtDireccion.setText(persona.getDireccion()+"");
+        txtRegularidad.setText(cliente.getRegularidad()+"");
+        txtNacionalidad.setText(natural.getNacionalidad()+"");
+
+        JOptionPane.showMessageDialog(this,"\nId: " + persona.getId() + "\nApellidos: " + persona.getApellidos()+ 
+                "\nNombres: " + persona.getNombres() + "\nCorreo: " + persona.getCorreo() + "\nFecha Nacimiento: " + persona.getFechaNac() + 
+                "\nLugar de Nacimiento: " + persona.getLugarNac() + "\nNumero Telefonico: " + persona.getNumCel() + 
+                "\nDireccion: " + persona.getDireccion() + "\nRegularidad: " + cliente.getRegularidad() +
+                "\nNacionalidad: " + natural.getNacionalidad());
+    }//GEN-LAST:event_btnEscribirActionPerformed
+
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        String id = txtId.getText();
+        String apellidos = txtApellidos.getText();
+        String nombre = txtNombres.getText();
+        String correo = txtCorreo.getText();
+        Date fechaNac = dtFecha.getDate();
+        String lugarNac = txtLugar.getText();
+        String numCel = txtNum.getText();
+        String direccion = txtDireccion.getText();
+        String regularidad = txtRegularidad.getText();
+        String nacionalidad = txtNacionalidad.getText();
+        
+        persona.setId(id);
+        persona.setApellidos(apellidos);
+        persona.setNombres(nombre);
+        persona.setCorreo(correo);
+        persona.setFechaNac(fechaNac);
+        persona.setLugarNac(lugarNac);
+        persona.setNumCel(numCel);
+        persona.setDireccion(direccion);
+        cliente.setRegularidad(regularidad);
+        natural.setNacionalidad(nacionalidad);
+        
+        Limpiar();
+        JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
+    }//GEN-LAST:event_btnLeerActionPerformed
 
     public static void main(String args[]) {
 

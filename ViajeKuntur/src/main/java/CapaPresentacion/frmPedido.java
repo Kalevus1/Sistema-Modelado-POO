@@ -1,6 +1,12 @@
 package CapaPresentacion;
 
+import CapaNegocio.Pedido;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class frmPedido extends javax.swing.JFrame {
+    
+    Pedido pedido = new Pedido();
 
     public frmPedido() {
         initComponents();
@@ -23,11 +29,11 @@ public class frmPedido extends javax.swing.JFrame {
         txtCantPedidos = new javax.swing.JTextField();
         txtEstado = new javax.swing.JTextField();
         dtFecha = new com.toedter.calendar.JDateChooser();
-        btnLeer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnEscribir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        btnEscribir = new javax.swing.JButton();
+        btnLeer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,11 +43,7 @@ public class frmPedido extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha de Pedido:");
 
-        btnLeer.setText("Leer");
-
         jLabel1.setText("Paquete");
-
-        btnEscribir.setText("Escribir");
 
         jLabel3.setText("Codigo de Pedido:");
 
@@ -49,6 +51,20 @@ public class frmPedido extends javax.swing.JFrame {
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
+            }
+        });
+
+        btnEscribir.setText("Escribir");
+        btnEscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscribirActionPerformed(evt);
+            }
+        });
+
+        btnLeer.setText("Leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
             }
         });
 
@@ -65,17 +81,17 @@ public class frmPedido extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigoPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(txtCodigoPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCantPedidos)
                     .addComponent(dtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnLeer, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnEscribir, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(btnSalir))
-                .addGap(35, 35, 35))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnEscribir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLeer))
+                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(179, 179, 179)
                 .addComponent(jLabel1)
@@ -87,30 +103,26 @@ public class frmPedido extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLeer))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEscribir)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnSalir))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLeer)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btnEscribir))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(6, 6, 6))
+                    .addComponent(jLabel2)
                     .addComponent(txtCantPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -121,6 +133,33 @@ public class frmPedido extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();   
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        String codigoPedido = txtCodigoPedido.getText();
+        Date fecha = dtFecha.getDate();
+        String estado = txtEstado.getText();
+        String cantidad = txtCantPedidos.getText();
+        
+        pedido.getCodPedido(codigoPedido);
+        pedido.getFechaPedido(fecha);
+        pedido.getEstadoPedido(estado);
+        pedido.getCantPedidos(cantidad);
+        
+        Limpiar();
+        JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
+
+    }//GEN-LAST:event_btnLeerActionPerformed
+
+    private void btnEscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscribirActionPerformed
+        txtCodigoPedido.setText(pedido.getCodPedido()+"");
+        dtFecha.setDate(pedido.getFechaPedido());
+        txtEstado.setText(pedido.getEstadoPedido()+"");
+        txtCantPedidos.setText(pedido.getCantPedidos()+"");
+        
+        JOptionPane.showMessageDialog(this,"\nCodigo de Pedido: " + pedido.getCodPedido() + "\nFecha: " + pedido.getFechaPedido()+ 
+                "\nEstado: " + pedido.getEstadoPedido() + "\nCant. Pedidos: " + pedido.getCantPedidos());
+
+    }//GEN-LAST:event_btnEscribirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

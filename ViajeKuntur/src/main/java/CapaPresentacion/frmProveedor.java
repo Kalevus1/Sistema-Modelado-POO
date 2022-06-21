@@ -1,6 +1,11 @@
 package CapaPresentacion;
 
+import CapaNegocio.Proveedores;
+import javax.swing.JOptionPane;
+
 public class frmProveedor extends javax.swing.JFrame {
+    
+    Proveedores proveedores = new Proveedores();
 
     public frmProveedor() {
         initComponents();
@@ -39,8 +44,18 @@ public class frmProveedor extends javax.swing.JFrame {
         jLabel5.setText("Tipo de Servicio:");
 
         btnLeer.setText("Leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
+            }
+        });
 
         btnEscribir.setText("Escribir");
+        btnEscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscribirActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Tipo de Empresa:");
 
@@ -130,36 +145,44 @@ public class frmProveedor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        String nombreEmpresa = txtNombre.getText();
+        String ruc = txtRuc.getText();
+        String direccion = txtDireccion.getText();
+        String tipoServi = txtTipoServi.getText();
+        String tipoEmpre = txtTipoEmpresa.getText();
+        
+        proveedores.getNombreEmpresa(nombreEmpresa);
+        proveedores.getRuc(ruc);
+        proveedores.getDireccion(direccion);
+        proveedores.getTipoServicio(tipoServi);
+        proveedores.getTipoEmpresa(tipoEmpre);
+        
+        Limpiar();
+        JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
+    }//GEN-LAST:event_btnLeerActionPerformed
+
+    private void btnEscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscribirActionPerformed
+        txtNombre.setText(proveedores.getNombreEmpresa()+"");
+        txtRuc.setText(proveedores.getRuc()+"");
+        txtDireccion.setText(proveedores.getDireccion());
+        txtTipoServi.setText(proveedores.getTipoServicio());
+        txtTipoEmpresa.setText(proveedores.getTipoEmpresa());
+       
+        JOptionPane.showMessageDialog(this,"\nNombre de Empresa: " + proveedores.getNombreEmpresa() + "\nRUC: " + proveedores.getRuc()+ 
+                "\nDireccion: " + proveedores.getDireccion() + "\nTipo de Servicio: " + proveedores.getTipoServicio() +
+                "\nTipo de Empresa: " + proveedores.getTipoEmpresa());    
+    }//GEN-LAST:event_btnEscribirActionPerformed
+
+   public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmProveedor().setVisible(true);
+                new frmNatural().setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEscribir;

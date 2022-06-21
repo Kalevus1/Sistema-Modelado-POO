@@ -5,6 +5,7 @@ import CapaNegocio.Comprobante;
 import javax.swing.JOptionPane;
 
 public class frmDetalleFactura extends javax.swing.JFrame {
+    
     DetalleFactura detalleFactura = new DetalleFactura();
     Comprobante comprobante = new Comprobante();
     

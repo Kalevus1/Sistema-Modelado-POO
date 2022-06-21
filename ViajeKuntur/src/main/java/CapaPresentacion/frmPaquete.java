@@ -1,7 +1,13 @@
 package CapaPresentacion;
 
-public class frmPaquete extends javax.swing.JFrame {
+import CapaNegocio.Paquete;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
+public class frmPaquete extends javax.swing.JFrame {
+    
+    Paquete paquete = new Paquete();
+    
     public frmPaquete() {
         initComponents();
     }
@@ -36,10 +42,20 @@ public class frmPaquete extends javax.swing.JFrame {
         jLabel4.setText("Descripcion:");
 
         btnLeer.setText("Leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Paquete");
 
         btnEscribir.setText("Escribir");
+        btnEscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscribirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Destino:");
 
@@ -118,29 +134,33 @@ public class frmPaquete extends javax.swing.JFrame {
         this.dispose();   
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        String destino = txtDestino.getText();
+        String cod = txtCodigo.getText();
+        String descripcion = txtDescripcion.getText();
+        Date fecha = dtFecha.getDate();
+        
+        paquete.getDestino(destino);
+        paquete.getCod(cod);
+        paquete.getDescripcion(descripcion);
+        paquete.getFecha(fecha);
+        
+        Limpiar();
+        JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
+    }//GEN-LAST:event_btnLeerActionPerformed
+
+    private void btnEscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscribirActionPerformed
+        txtDestino.setText(paquete.getDestino()+"");
+        txtCodigo.setText(paquete.getCod()+"");
+        txtDescripcion.setText(paquete.getDescripcion()+"");
+        dtFecha.setDate(paquete.getFecha());
+        
+        JOptionPane.showMessageDialog(this,"\nDestino: " + paquete.getDestino() + "\nCodigo: " + paquete.getCod() + 
+                "\nDescripcion: " + paquete.getDescripcion() + "\nFecha: " + paquete.getFecha());
+    }//GEN-LAST:event_btnEscribirActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPaquete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPaquete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPaquete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPaquete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

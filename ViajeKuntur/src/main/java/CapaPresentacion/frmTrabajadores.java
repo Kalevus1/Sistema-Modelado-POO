@@ -1,6 +1,14 @@
 package CapaPresentacion;
 
+import CapaNegocio.Trabajadores;
+import CapaNegocio.Persona;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class frmTrabajadores extends javax.swing.JFrame {
+    
+    Trabajadores trabajadores = new Trabajadores();
+    Persona persona = new Persona();
 
     public frmTrabajadores() {
         initComponents();
@@ -63,10 +71,20 @@ public class frmTrabajadores extends javax.swing.JFrame {
         jLabel5.setText("Correo:");
 
         btnLeer.setText("Leer");
+        btnLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeerActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Fecha Nac:");
 
         btnEscribir.setText("Escribir");
+        btnEscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscribirActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Lugar Nac:");
 
@@ -191,6 +209,55 @@ public class frmTrabajadores extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();   
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscribirActionPerformed
+        txtId.setText(persona.getId()+"");
+        txtApellidos.setText(persona.getApellidos()+"");
+        txtNombres.setText(persona.getNombres()+"");
+        txtCorreo.setText(persona.getCorreo()+"");
+        dtFecha.setDate(persona.getFechaNac());
+        txtLugar.setText(persona.getLugarNac()+"");
+        txtNum.setText(persona.getNumCel()+"");
+        txtDireccion.setText(persona.getDireccion()+"");
+        txtPuesto.setText(trabajadores.getPuesto()+"");
+        txtHorario.setText(trabajadores.getHorario()+"");
+        txtSalario.setText(trabajadores.getSalario()+"");
+       
+        JOptionPane.showMessageDialog(this,"\nId: " + persona.getId() + "\nApellidos: " + persona.getApellidos()+ 
+                "\nNombres: " + persona.getNombres() + "\nCorreo: " + persona.getCorreo() + "\nFecha Nacimiento: " + persona.getFechaNac() + 
+                "\nLugar de Nacimiento: " + persona.getLugarNac() + "\nNumero Telefonico: " + persona.getNumCel() + 
+                "\nDireccion: " + persona.getDireccion() + "\nPuesto: " + trabajadores.getPuesto() +
+                "\nHorario: " + trabajadores.getHorario() + "\nSalario: " + trabajadores.getSalario());
+    }//GEN-LAST:event_btnEscribirActionPerformed
+
+    private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
+        String id = txtId.getText();
+        String apellidos = txtApellidos.getText();
+        String nombre = txtNombres.getText();
+        String correo = txtCorreo.getText();
+        Date fechaNac = dtFecha.getDate();
+        String lugarNac = txtLugar.getText();
+        String numCel = txtNum.getText();
+        String direccion = txtDireccion.getText();
+        String puesto = txtPuesto.getText();
+        String horario = txtHorario.getText();
+        String salario = txtSalario.getText();
+        
+        persona.setId(id);
+        persona.setApellidos(apellidos);
+        persona.setNombres(nombre);
+        persona.setCorreo(correo);
+        persona.setFechaNac(fechaNac);
+        persona.setLugarNac(lugarNac);
+        persona.setNumCel(numCel);
+        persona.setDireccion(direccion);
+        trabajadores.setPuesto(puesto);
+        trabajadores.setHorario(horario);
+        trabajadores.setSalario(salario);
+        
+        Limpiar();
+        JOptionPane.showMessageDialog(this,"Los datos se guardaron correctamente");
+    }//GEN-LAST:event_btnLeerActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
